@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   //console.log("Root route hit");
-  res.send("Server is running 🚀");
+  res.send("Server is running 🚀"); 
 });
 
 const PORT = 5001;
@@ -28,4 +28,8 @@ app.get("/create-test-user", async (req, res) => {
   });
 
   res.json(user);
-});
+}); 
+
+const authRoutes = require("./routes/authRoutes");
+
+app.use("/api/auth", authRoutes);
