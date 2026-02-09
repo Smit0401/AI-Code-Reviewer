@@ -17,3 +17,15 @@ const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+const User = require("./models/User");
+
+app.get("/create-test-user", async (req, res) => {
+  const user = await User.create({
+    name: "Test User",
+    email: "test@example.com",
+    password: "123456"
+  });
+
+  res.json(user);
+});
