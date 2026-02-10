@@ -33,3 +33,12 @@ app.get("/create-test-user", async (req, res) => {
 const authRoutes = require("./routes/authRoutes");
 
 app.use("/api/auth", authRoutes);
+
+const authMiddleware = require("./middleware/authMiddleware");
+
+app.get("/api/protected", authMiddleware, (req, res) => {
+  res.json({
+    message: "You accessed a protected route",
+    user: req.user
+  });
+});
