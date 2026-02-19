@@ -14,9 +14,7 @@ app.get("/", (req, res) => {
 
 const PORT = 5001;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
 
 const User = require("./models/User");
 
@@ -41,4 +39,12 @@ app.get("/api/protected", authMiddleware, (req, res) => {
     message: "You accessed a protected route",
     user: req.user
   });
+});
+
+const submissionRoutes = require("./routes/submissionRoutes");
+
+app.use("/api/submissions", submissionRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
